@@ -31,7 +31,7 @@ router.get("/login-test", (req, res, next) => {
   }
   res.json({
     status: 1,
-    message: "未登录"
+    message: "没有登录"
   });
 });
 
