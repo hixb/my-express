@@ -1,28 +1,27 @@
 const createError = require("http-errors");
 const express = require("express");
-const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const session = require("express-session");
 
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 const articleRouter = require("./routes/article");
 const userRouter = require("./routes/user");
 
 const app = express();
 
-// view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jade");
-
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(session({
+  secret: "WJiol_1576#",
+  cookie: {
+    path: "/",
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000
+  }
+}));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/api/article", articleRouter);
 app.use("/api/user", userRouter);
 
