@@ -37,7 +37,7 @@ const getDetail = (id) => {
  * @param blogData
  * @returns {Promise<{id: *}>}
  */
-const newBlog = (blogData = {}) => {
+const newArticle = (blogData = {}) => {
   const title = xss(escape(blogData.title));
   const content = xss(escape(blogData.content));
   const author = blogData.author;
@@ -61,7 +61,7 @@ const newBlog = (blogData = {}) => {
  * @param blogData
  * @returns {Promise<boolean>}
  */
-const updateBlog = (id, blogData = {}) => {
+const updateArticle = (id, blogData = {}) => {
   blogData = escape(blogData);
   const title = blogData.title;
   const content = blogData.content;
@@ -81,7 +81,7 @@ const updateBlog = (id, blogData = {}) => {
  * @param author
  * @returns {Promise<boolean>}
  */
-const delBlog = (id, author) => {
+const delArticle = (id, author) => {
   id = escape(id);
   author = escape(author);
   const sql = `delete from blogs where id=${id} and author='${author}';`;
@@ -93,7 +93,7 @@ const delBlog = (id, author) => {
 module.exports = {
   getList,
   getDetail,
-  newBlog,
-  updateBlog,
-  delBlog
+  newArticle,
+  updateArticle,
+  delArticle
 };
